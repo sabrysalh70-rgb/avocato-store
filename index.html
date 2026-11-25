@@ -1,46 +1,114 @@
-
-AVOCATO
-متجر الافوكاتو للإكسسوارات
-
-الرئيسية المنتجات سلة المشتريات
-كل احتياجات موبايلك في مكان واحد
-اكتشف أحدث الإكسسوارات والعروض من الافوكاتو
-
-منتجاتنا
-🛍️ تسوق الآن
-🎧
-سماعة بلوتوث
-250 جنيه
-أضف للسلة
-⌚
-ساعة ذكية
-450 جنيه
-أضف للسلة
-🔌
-شاحن سريع
-180 جنيه
-أضف للسلة
-🔋
-باور بانك
-350 جنيه
-أضف للسلة
-📱
-جراب موبايل
-100 جنيه
-أضف للسلة
-🔗
-كابل شحن
-75 جنيه
-أضف للسلة
-🛒 سلة المشتريات
-السلة فارغة حاليًا
-الإجمالي: 0 جنيه
-بيانات الطلب
-الاسم بالكامل
- 
-رقم الموبايل
- 
-العنوان بالتفصيل
- تأكيد الطلب
-AVOCATO STORE
-شكرًا لثقتكم في متجر الافوكاتو ❤️
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10264b">
+  <title>AVOCATO | متجر الافوكاتو</title>
+  <style>
+    :root{--navy:#10264b;--blue:#1765b5;--ink:#17233c;--pale:#edf3fc;--white:#fff}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Tahoma,Arial,sans-serif;background:#f4f6fa;color:var(--ink)}
+    header{background:var(--navy);color:white;padding:20px 15px;text-align:center}
+    header h1{margin:0;font-size:30px;letter-spacing:2px}
+    header p{margin:7px 0 0;color:#d5e2fa}
+    nav{position:sticky;top:0;z-index:5;background:white;padding:13px 8px;text-align:center;box-shadow:0 2px 9px #00000012}
+    nav a{color:var(--navy);text-decoration:none;margin:0 9px;font-weight:bold;font-size:14px}
+    .hero{background:linear-gradient(130deg,#10264b,#1765b5);color:white;text-align:center;padding:42px 16px}
+    .hero h2{font-size:26px;margin:0 0 12px}.hero p{margin:0;line-height:1.8}
+    .container{max-width:1000px;margin:25px auto;padding:0 14px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .section-head h2{font-size:22px}
+    .products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+    .product{background:white;border-radius:14px;padding:13px;text-align:center;box-shadow:0 3px 12px #0000000c}
+    .photo{height:112px;border-radius:11px;background:var(--pale);display:grid;place-items:center;font-size:45px}
+    .product h3{font-size:16px;margin:12px 0 7px}
+    .price{color:var(--blue);font-weight:bold;margin:9px 0}
+    button{border:0;border-radius:9px;padding:11px 14px;background:var(--blue);color:white;font-weight:bold;font-size:14px;cursor:pointer}
+    button:active{transform:scale(.98)}
+    .cart{background:white;border-radius:14px;padding:17px;margin-top:25px;box-shadow:0 3px 12px #0000000c}
+    .cart-item{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid #edf0f5}
+    .cart-item button{padding:7px 9px;background:#b83232;font-size:12px}
+    input,textarea{width:100%;padding:13px;margin:7px 0;border:1px solid #ccd4e1;border-radius:9px;font:inherit;font-size:14px}
+    .hint{font-size:12px;color:#69758a;line-height:1.7}
+    footer{background:var(--navy);color:white;text-align:center;padding:23px 12px;margin-top:35px}
+    @media(min-width:650px){.products{grid-template-columns:repeat(3,minmax(0,1fr))}.hero h2{font-size:34px}}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AVOCATO</h1>
+    <p>متجر الافوكاتو للإكسسوارات</p>
+  </header>
+  <nav>
+    <a href="#home">الرئيسية</a>
+    <a href="#products">المنتجات</a>
+    <a href="#cart">سلة المشتريات</a>
+  </nav>
+  <section class="hero" id="home">
+    <h2>كل احتياجات موبايلك في مكان واحد</h2>
+    <p>اكتشف أحدث إكسسوارات الموبايل والعروض من متجر الافوكاتو</p>
+  </section>
+  <main class="container">
+    <div class="section-head" id="products">
+      <h2>منتجاتنا</h2><span>🛍️ تسوّق الآن</span>
+    </div>
+    <div class="products" id="productsList"></div>
+    <section class="cart" id="cart">
+      <h2>🛒 سلة المشتريات</h2>
+      <div id="cartItems">السلة فارغة حاليًا</div>
+      <h3 id="total">الإجمالي: 0 جنيه</h3>
+      <h3>بيانات الطلب</h3>
+      <input id="customer" placeholder="الاسم بالكامل" autocomplete="name">
+      <input id="phone" placeholder="رقم الموبايل" inputmode="tel" autocomplete="tel">
+      <textarea id="address" placeholder="العنوان بالتفصيل" rows="2"></textarea>
+      <button onclick="sendOrder()">تجهيز الطلب</button>
+      <p class="hint">هذه نسخة عرض أولية: الطلب لا يُرسل إلى المتجر بعد. سيتم تفعيل استقبال الطلبات بعد ربط قاعدة البيانات.</p>
+      <p id="message" role="status"></p>
+    </section>
+  </main>
+  <footer>
+    <h3>AVOCATO STORE</h3>
+    <p>شكرًا لثقتكم في متجر الافوكاتو ❤️</p>
+  </footer>
+<script>
+const products = [
+  {name:"سماعة بلوتوث",price:250,icon:"🎧"},
+  {name:"ساعة ذكية",price:450,icon:"⌚"},
+  {name:"شاحن سريع",price:180,icon:"🔌"},
+  {name:"باور بانك",price:350,icon:"🔋"},
+  {name:"جراب موبايل",price:100,icon:"📱"},
+  {name:"كابل شحن",price:75,icon:"🔗"}
+];
+let cart = [];
+function renderProducts(){
+  document.getElementById("productsList").innerHTML = products.map((p,i)=>`
+    <article class="product">
+      <div class="photo" aria-hidden="true">${p.icon}</div>
+      <h3>${p.name}</h3>
+      <div class="price">${p.price} جنيه</div>
+      <button type="button" onclick="addToCart(${i})">أضف للسلة</button>
+    </article>`).join("");
+}
+function addToCart(i){cart.push(products[i]);renderCart();}
+function removeItem(i){cart.splice(i,1);renderCart();}
+function renderCart(){
+  const box=document.getElementById("cartItems");
+  box.innerHTML=cart.length ? cart.map((p,i)=>`
+    <div class="cart-item"><span>${p.name}</span>
+    <span>${p.price} جنيه <button type="button" onclick="removeItem(${i})">حذف</button></span></div>`).join("") : "السلة فارغة حاليًا";
+  document.getElementById("total").textContent="الإجمالي: "+cart.reduce((sum,p)=>sum+p.price,0)+" جنيه";
+}
+function sendOrder(){
+  const name=document.getElementById("customer").value.trim();
+  const phone=document.getElementById("phone").value.trim();
+  const address=document.getElementById("address").value.trim();
+  const message=document.getElementById("message");
+  if(!cart.length){message.textContent="أضف منتجًا واحدًا على الأقل إلى السلة.";return;}
+  if(!name||!phone||!address){message.textContent="من فضلك أكمل الاسم ورقم الموبايل والعنوان.";return;}
+  message.textContent="تم التحقق من البيانات في النسخة التجريبية فقط. لم يتم إرسال الطلب إلى المتجر بعد.";
+}
+renderProducts();renderCart();
+</script>
+</body>
+</html>
